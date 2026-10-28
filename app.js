@@ -76,13 +76,13 @@
     { name: 'Apartamento', subcategories: [{ name: 'Outro', fields: ['Descrição'] }] }
   ];
 
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyq76ezXA8GFMMljz9lY8uCPgYds_rIWrtyGLDemjdRIuTBimkRBTtDaXOu5PS5yxHMmg/exec';
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzNu6b4lo7oCSWK21t9xqwi3o7pZWtHu-XU57O0clWtgCxwttI0_QfWN2qFaF-aQZ7k/exec';
   const form = document.getElementById('expenseForm');
   const dateInput = document.getElementById('expenseDate');
   const amountInput = document.getElementById('expenseAmount');
   const categorySelect = document.getElementById('categorySelect');
   const subcategoryCard = document.getElementById('subcategoryCard');
-  const subcategoryOptions = document.getElementById('subcategoryOptions');
+  const subcategorySelect = document.getElementById('subcategorySelect');
   const detailCard = document.getElementById('detailCard');
   const detailHint = document.getElementById('detailHint');
   const subdetailOptions = document.getElementById('subdetailOptions');
@@ -113,7 +113,7 @@
   function clearDetails() {
     selectedSubcategory = null;
     selectedDetail = '';
-    subcategoryOptions.replaceChildren();
+    subcategorySelect.replaceChildren(new Option('Seleciona um tipo de despesa', ''));
     subdetailOptions.replaceChildren();
     extraFields.replaceChildren();
     subcategoryCard.hidden = true;
@@ -144,11 +144,6 @@
     selectedDetail = '';
     const category = categories[Number(categorySelect.value)];
     const subcategory = category?.subcategories[selectedSubcategory];
-    [...subcategoryOptions.children].forEach((button, buttonIndex) => {
-      const chosen = buttonIndex === selectedSubcategory;
-      button.classList.toggle('selected', chosen);
-      button.setAttribute('aria-pressed', String(chosen));
-    });
     subdetailOptions.replaceChildren();
     (subcategory?.options || []).forEach((option) => subdetailOptions.append(makeChoice(option, 'detail')));
     detailHint.textContent = subcategory?.options?.length
@@ -201,17 +196,22 @@
     if (categorySelect.value === '') return;
     const category = categories[Number(categorySelect.value)];
     category.subcategories.forEach((subcategory, index) => {
-      subcategoryOptions.append(makeChoice(subcategory.name, 'subcategory', false));
-      subcategoryOptions.lastElementChild.dataset.index = String(index);
+      subcategorySelect.append(new Option(subcategory.name, String(index)));
     });
     subcategoryCard.hidden = false;
   });
 
-  subcategoryOptions.addEventListener('click', (event) => {
-    const button = event.target.closest('button[data-group="subcategory"]');
-    if (!button) return;
+  subcategorySelect.addEventListener('change', () => {
     clearMessages();
-    selectSubcategory(button.dataset.index);
+    if (subcategorySelect.value === '') {
+      selectedSubcategory = null;
+      selectedDetail = '';
+      subdetailOptions.replaceChildren();
+      extraFields.replaceChildren();
+      detailCard.hidden = true;
+      return;
+    }
+    selectSubcategory(subcategorySelect.value);
   });
 
   subdetailOptions.addEventListener('click', (event) => {

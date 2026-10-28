@@ -1,0 +1,24 @@
+APP DE DESPESAS — PRIMEIRA VERSÃO PWA
+
+Conteúdo
+- index.html: estrutura da aplicação
+- style.css: interface adaptada a telemóvel
+- app.js: categorias atuais e envio para Google Apps Script
+- manifest.json, service-worker.js e ícones: instalação como aplicação PWA
+
+Como colocar no GitHub Pages
+1. Extrai o ZIP.
+2. Copia todos os ficheiros desta pasta para a pasta principal do repositório do site.
+3. Publica/atualiza o GitHub Pages e abre o endereço do site em HTTPS.
+4. No iPhone, abre no Safari, toca em Partilhar e escolhe “Adicionar ao ecrã principal”.
+   No Android, abre o menu do navegador e escolhe “Instalar aplicação” ou “Adicionar ao ecrã principal”.
+
+Ligação ao Google Sheets
+A aplicação mantém o URL do Apps Script, o envio por POST e os nomes dos campos usados pelo site antigo.
+O formulário precisa de ligação à Internet para enviar registos. A PWA guarda os ficheiros da interface
+para abrir mais depressa e continuar a mostrar o formulário se a ligação falhar, mas não guarda envios
+offline.
+
+Categorias
+Esta versão mantém as categorias atuais do HTML fornecido. Podemos alterar categorias, opções e campos
+na próxima fase sem mudar a estrutura PWA.

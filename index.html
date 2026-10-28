@@ -65,9 +65,15 @@
         <section class="card" id="subcategoryCard" aria-labelledby="subcategoryHeading" hidden>
           <div class="section-title">
             <span class="step-number">2</span>
-            <div><h2 id="subcategoryHeading">Tipo de despesa</h2><p>Toca numa opção para selecionar</p></div>
+            <div><h2 id="subcategoryHeading">Tipo de despesa</h2><p>Seleciona uma opção da lista</p></div>
           </div>
-          <div id="subcategoryOptions" class="choice-grid" role="group" aria-label="Subcategoria"></div>
+          <label class="select-wrap" for="subcategorySelect">
+            <span class="sr-only">Tipo de despesa</span>
+            <select id="subcategorySelect" required>
+              <option value="">Seleciona um tipo de despesa</option>
+            </select>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg>
+          </label>
         </section>
 
         <section class="card" id="detailCard" aria-labelledby="detailHeading" hidden>
