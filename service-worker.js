@@ -1,4 +1,4 @@
-const CACHE_NAME = 'despesas-pwa-v1';
+const CACHE_NAME = 'despesas-pwa-v2';
 const SHELL_FILES = [
   './',
   './index.html',
