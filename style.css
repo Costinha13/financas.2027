@@ -54,7 +54,7 @@ button { touch-action: manipulation; }
   border-radius: 15px;
   box-shadow: 0 5px 12px rgba(54, 120, 245, .22);
 }
-.brand-mark svg { width: 27px; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.brand-mark img { display: block; width: 47px; height: 47px; border-radius: 15px; }
 .header-copy { flex: 1; }
 .eyebrow {
   margin: 0 0 3px;
